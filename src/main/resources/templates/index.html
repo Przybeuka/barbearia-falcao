@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>Barbearia Falcão</title>
+	    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+	    <style>
+	        body {
+	            display: flex;
+	            min-height: 100vh;
+	            flex-direction: column;
+	            background-color: #f0f0f0; 
+	        }
+	
+	        #wrapper {
+	            display: flex;
+	            width: 100%;
+	        }
+	
+	        #sidebar-wrapper {
+	            min-width: 250px;
+	            max-width: 250px;
+	            background: rgb(43, 21, 4); 
+	            padding-top: 5px; 
+	            position: fixed;
+	            height: 100%;
+	        }
+	
+	        .sidebar-heading {
+	            background: rgb(43, 21, 4); 
+	            color: white;
+	            padding: 5px 0;
+	            margin-bottom: 4px; 
+	        }
+	
+	        .sidebar-heading img {
+	            width: 80%; 
+	            border-radius: 50%;
+	            margin-top: 4px; 
+	        }
+	
+	        .list-group-item {
+	            color: white;
+	            background-color: rgb(43, 21, 4);
+	            border: none;
+	            margin-bottom: 2px;
+	            padding: 10px 15px;
+	            font-size: 1.3rem;
+	        }
+	
+	        .list-group-item:hover {
+	            background-color: #f0f0f0;
+	            color: black;
+	        }
+	
+	        header {
+	            background: #f0f0f0;
+	            color: black;
+	            text-align: center;
+	            padding: 20px 0;
+	        }
+	
+	        header h1 {
+	            font-size: 3rem;
+	        }
+	
+	        .service-box {
+	            margin-top: 20px;
+	        }
+	
+	        .service-box i {
+	            color: #000; 
+	            font-size: 2.5rem; 
+	            margin-bottom: 10px;
+	        }
+	
+	        footer {
+	            background: rgb(68, 30, 0);
+	            color: white;
+	            text-align: center;
+	            padding: 10px 0;
+	        }
+	
+	        #page-content-wrapper {
+	            flex: 1;
+	            padding: 20px;
+	            margin-left: 300px;
+	        }
+	
+	        .form-check-input[type="checkbox"] {
+	            width: 1.1em;
+	            height: 1.1em;
+	        }
+	
+	    </style>
+		
+	</head>
+	
+	<body>
+	    <div class="d-flex" id="wrapper">
+	        <!-- Barra lateral -->
+	        <div id="sidebar-wrapper" class="border-right">
+	            <div class="sidebar-heading text-center py-2">
+	                <img src="https://scontent.fbfh1-1.fna.fbcdn.net/v/t1.6435-9/46892121_2149208465396244_9172301611530190848_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Bf0P5YN3TJwQ7kNvgFWtuX1&_nc_ht=scontent.fbfh1-1.fna&oh=00_AYBtXyR8wbH7354M19F-8uVy24X67MJCObYfvFEDIeeNkA&oe=667C6EEA"
+	                 class="img-fluid" alt="Barbearia">
+	            </div>
+	            <div class="list-group list-group-flush">
+					<a href="/agendar" class="list-group-item list-group-item-action">Agendamento</a>
+					<a href="/atualizar" class="list-group-item list-group-item-action">Remarcar</a>
+	                <a href="#contact" class="list-group-item list-group-item-action">Contato</a>
+	            </div>
+	        </div>
+	
+			<!--Conteúdo da página-->
+			<div id="page-content-wrapper">
+				<div class="container-fluid">
+
+				
+					<!-- Cabeçalho -->
+				    <header>
+						<h1>Barbearia Falcão</h1>
+				    </header>
+				
+					<section>	
+						<h1>PROXIMOS HORÁRIOS</h1>
+						
+						<tr th:each="agenda : ${agenda}">
+							<span th:text="${agenda.nome}"></span>
+							<span th:text="${agenda.telefone}"></span>
+							<span th:text="${agenda.dia}"></span>
+							<span th:text="${agenda.horario}"></span>
+							<span th:text="${agenda.barbeiro}"></span>
+						</trth>	
+					</section>
+					
+					<!-- Serviços -->
+					<section id="services" class="bg-light py-5">
+					    <div class="container">
+							
+					        <div class="text-center">
+					            <h2>Nossos Serviços</h2>
+					            <p class="lead">Confira nossos serviços de alta qualidade</p>
+					        </div>
+							
+					        <div class="row">
+								
+					            <div class="col-md-3 text-center">
+					                <div class="service-box">
+					                    <h4>Corte de Cabelo</h4>
+					                    <p>Profissionais especializados para o corte de sua preferência.</p>
+					                </div>
+					            </div>
+								
+					            <div class="col-md-3 text-center">
+					                <div class="service-box">
+					                    <h4>Barba</h4>
+					                    <p>Serviço completo de barba, aparação e modelagem.</p>
+					                </div>
+					            </div>
+								
+					            <div class="col-md-3 text-center">
+					                <div class="service-box">
+					                    <h4>Coloração</h4>
+					                    <p>Os melhores produtos para coloração de cabelo e barba.</p>
+					                </div>
+					            </div>
+								
+					            <div class="col-md-3 text-center">
+					                <div class="service-box">
+					                    <h4>Sobrancelhas</h4>
+					                    <p>Serviço profissional para modelagem de sobrancelhas.</p>
+					                </div>
+					            </div>
+								
+					        </div>
+					    </div>
+					</section>
+					
+	               <!-- Contatos-->
+	               <section id="contact" class="py-5">
+	                   <div class="container">
+	                       <div class="text-center">
+	                          <h2>Contato</h2>
+	                           <p class="lead">Entre em contato conosco para mais informações</p>
+	                       </div>
+	                       <div class="row">
+	                           <div class="col-lg-4 text-center">
+	                               <h3>Redes Sociais</h3>
+	                               <ul class="list-unstyled">
+	                                   <li><i class="fab fa-whatsapp"></i> WhatsApp: (41) 99936-0911</li>
+	                                   <li><i class="fab fa-instagram"></i> Instagram: @barbeariia_falcao</li>
+	                                   <li><i class="fab fa-facebook"></i> Facebook: Barbearia Falcão</li>
+	                               </ul>
+	                           </div>
+	                           <div class="col-lg-4 text-center">
+	                               <h3>Nosso Endereço</h3>
+	                               <p>Rua Pedro Gusso, 281</p>
+	                               <p>Bairro Novo Mundo</p>
+	                               <p>Curitiba - PR</p>
+	                           </div>
+	                           <div class="col-lg-4 text-center">
+	                               <h3>Horário de Atendimento</h3>
+	                               <p>Terça a Sábado: 08:00 - 18:00</p>
+	                           </div>
+	                       </div>
+	                   </div>
+	               </section>                
+	           </div>
+	       </div>
+	   </div>
+	</body>
+</html>
