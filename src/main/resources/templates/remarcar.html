@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Falcão</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+
+<body>
+    <section id="update" class="update-form">
+        <div class="container">
+            <div class="text-center">
+                <h2>Atualizar Agendamento</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <form action="/remarcar/{id}" method="post" th:action="@{/remarcar/{id}(id=${agenda.id})}"
+                        th:object="${agenda}">
+                        <!-- NOME -->
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" class="form-control" id="nome" th:field="*{nome}">
+                        </div>
+
+                        <!-- TELEFONE -->
+                        <div class="form-group">
+                            <label for="telephone">Telefone</label>
+                            <input type="text" id="telefone" th:field="*{telefone}" class="form-control"
+                                autocomplete="tel" pattern="^\d{2}\d{5}\d{4}$" maxlength="11" required
+                                placeholder="(XX)XXXXX-XXXX">
+                        </div>
+
+                        <!-- DIA SEMANA -->
+                        <div class="form-group">
+                            <label for="barber">Dia</label>
+                            <select class="form-control" id="dia" th:field="*{dia}">
+                                <option value="">Selecione</option>
+                                <option value="Terça-feira">Terça-feira</option>
+                                <option value="Quarta-feira">Quarta-feira</option>
+                                <option value="Quinta-feira">Quinta-feira</option>
+                                <option value="Sexta-feira">Sexta-feira</option>
+                                <option value="Sabado">Sábado</option>
+                            </select>
+                        </div>
+
+                        <!-- HORÁRIO -->
+                        <div class="form-group">
+                            <label for="barber">Horário</label>
+                            <select class="form-control" id="hour" th:field="*{horario}">
+                                <option value="">Selecione</option>
+                                <option value="08h">08h</option>
+                                <option value="09h">09h</option>
+                                <option value="10h">10h</option>
+                                <option value="11h">11h</option>
+                                <option value="12h">12h</option>
+                                <option value="13h">13h</option>
+                                <option value="14h">14h</option>
+                                <option value="15h">15h</option>
+                                <option value="16h">16h</option>
+                                <option value="17h">17h</option>
+                                <option value="18h">18h</option>
+                            </select>
+                        </div>
+
+                        <!-- BARBEIRO -->
+                        <div class="form-group">
+                            <label for="barber">Barbeiro de preferência</label>
+                            <select class="form-control" id="barber" th:field="*{barbeiro}">
+                                <option value="">Sem Preferência</option>
+                                <option value="João">João</option>
+                                <option value="Gustavo">Gustavo</option>
+                                <option value="Gabriel">Gabriel</option>
+                                <option value="Adilson">Adilson</option>
+                            </select>
+                        </div>
+
+                        <!-- SERVIÇOS -->
+                        <div class="form-group">
+                            <label for="services">Serviços</label>
+                            <select class="form-control" id="services" th:field="*{servico}">
+                                <option value="">Sem Preferência</option>
+                                <option value="Corte">Corte</option>
+                                <option value="Barba">Barba</option>
+                                <option value="Coloração">Coloração</option>
+                                <option value="Sobrancelhas">Sobrancelhas</option>
+                            </select>
+                        </div>
+
+                        <input type="hidden" name="_method" value="PUT">
+
+                        <button type="submit" class="btn btn-primary btn-block">Atualizar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
