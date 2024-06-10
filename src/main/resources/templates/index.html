@@ -22,6 +22,7 @@
 			<div class="list-group list-group-flush">
 				<a href="/agendar" class="list-group-item list-group-item-action">Agendamento</a>
 				<a href="/atualizar" class="list-group-item list-group-item-action">Remarcar</a>
+				<a href="/valor" class="list-group-item list-group-item-action">Valor</a>
 				<a href="#contact" class="list-group-item list-group-item-action">Contato</a>
 			</div>
 		</div>
@@ -81,49 +82,47 @@
 
 
 				<!-- Serviços -->
-				<section id="services" class="bg-light py-5">
+				<section id="fila" class="bg-light py-5">
 					<div class="container">
-
 						<div class="text-center">
-							<h2>Nossos Serviços</h2>
-							<p class="lead">Confira nossos serviços de alta qualidade</p>
+							<h2>Valores</h2>
 						</div>
-
 						<div class="row">
-
-							<div class="col-md-3 text-center">
-								<div class="service-box">
-									<h4>Corte de Cabelo</h4>
-									<p>Profissionais especializados para o corte de sua preferência.</p>
-								</div>
+							<div class="col-md-8 offset-md-2">
+								<table class="table table-striped table-hover">
+									<thead class="custom-thead">
+										<tr>
+											<th>Dia</th>
+											<th>Corte</th>
+											<th>Barba</th>
+											<th>Coloração</th>
+											<th>Sombrancelha</th>
+											<th>Ação</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="valor : ${valor}">
+											<td th:text="${valor.dia}"></td>
+											<td th:text="${valor.corte}"></td>
+											<td th:text="${valor.barba}"></td>
+											<td th:text="${valor.coloracao}"></td>
+											<td th:text="${valor.sombrancelha}"></td>
+											<td>
+												<form action="/valorAtualiza/{id}" method="get"
+												     th:action="@{/valorAtualiza/{id}(id=${valor.id})}" th:object="${valor}"
+												     style="display: inline;">
+												     <button class="btn btn-primary btn-sm">Atualizar</button>
+												 </form>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							</div>
-
-							<div class="col-md-3 text-center">
-								<div class="service-box">
-									<h4>Barba</h4>
-									<p>Serviço completo de barba, aparação e modelagem.</p>
-								</div>
-							</div>
-
-							<div class="col-md-3 text-center">
-								<div class="service-box">
-									<h4>Coloração</h4>
-									<p>Os melhores produtos para coloração de cabelo e barba.</p>
-								</div>
-							</div>
-
-							<div class="col-md-3 text-center">
-								<div class="service-box">
-									<h4>Sobrancelhas</h4>
-									<p>Serviço profissional para modelagem de sobrancelhas.</p>
-								</div>
-							</div>
-
 						</div>
 					</div>
 				</section>
-
-				<!-- Contatos-->
+				
+				<!-- CONTATO -->
 				<section id="contact" class="py-5">
 					<div class="container">
 						<div class="text-center">
@@ -141,9 +140,9 @@
 							</div>
 							<div class="col-lg-4 text-center">
 								<h3>Nosso Endereço</h3>
-								<p>Rua Pedro Gusso, 281</p>
-								<p>Bairro Novo Mundo</p>
-								<p>Curitiba - PR</p>
+								<li>Rua Pedro Gusso, 281</li>
+								<li>Bairro Novo Mundo</li>
+								<li>Curitiba - PR</li>
 							</div>
 							<div class="col-lg-4 text-center">
 								<h3>Horário de Atendimento</h3>

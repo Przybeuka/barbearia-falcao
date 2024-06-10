@@ -18,8 +18,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <form action="/remarcar/{id}" method="post" th:action="@{/remarcar/{id}(id=${agenda.id})}"
-                        th:object="${agenda}">
+                    <form action="/remarcar/{id}" method="post" th:action="@{/remarcar/{id}(id=${agenda.id})}" th:object="${agenda}">
                         <!-- NOME -->
                         <div class="form-group">
                             <label for="name">Nome</label>

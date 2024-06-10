@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.unicuritiba.barbeariafalcao.models.Agenda;
+import br.com.unicuritiba.barbeariafalcao.models.Valor;
 import br.com.unicuritiba.barbeariafalcao.repositories.AgendaRepository;
+import br.com.unicuritiba.barbeariafalcao.repositories.ValorRepository;
 
 
 @Controller
@@ -24,11 +26,18 @@ public class BarbeariaFalcaoAPIController {
     @Autowired
     private AgendaRepository repository;
     
+    @Autowired
+    private ValorRepository valorRepository;
+    
     //MOSTRA LISTA DA AGENDA
     @GetMapping("/") 
     public ModelAndView home() {
         List<Agenda> agenda = repository.findAll();
         ModelAndView view = new ModelAndView("index");
+        
+        List<Valor> valor = valorRepository.findAll();
+        
+        view.addObject("valor", valor);
         view.addObject("agenda", agenda);
         return view;
     }
@@ -57,6 +66,47 @@ public class BarbeariaFalcaoAPIController {
         ModelAndView view = new ModelAndView("atualizar");
         view.addObject("agenda", agenda);
         return view;
+    }
+    
+    //MOSTRAR PAGINA VALOR
+	@GetMapping("/valor") public ModelAndView valor() {	
+		
+		ModelAndView view = new ModelAndView("valor");
+		view.addObject("model", new Valor());
+		
+		return view;
+	}
+    
+    //SALVA NA PARTE VALOR
+    @PostMapping("/valor")
+    public String salvarValor(Valor valor, Model model, BindingResult result) {
+        valorRepository.save(valor);
+        return "redirect:/";
+    }
+    
+    //PEGA PELO ID O CLIENTE NA AGENDA E DIRECIONA PARA REMARCAR
+    @GetMapping("/valorAtualiza/{id}")
+    public ModelAndView atualizarValor(@PathVariable("id") long id) {
+        Valor valor = valorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido: " + id));
+        ModelAndView view = new ModelAndView("valorAtualiza");
+        view.addObject("valor", valor);
+        return view;
+    }
+    
+    //REMARCA NA AGENDA PELO ID O VALOR
+    @PutMapping("/valorAtualiza/{id}")
+    public String remarcarValor(@PathVariable("id") long id, @ModelAttribute Valor valor, Model model) {
+        Valor valorExistente = valorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido: " + id));
+
+        valorExistente.setDia(valor.getDia());
+        valorExistente.setCorte(valor.getCorte());
+        valorExistente.setBarba(valor.getBarba());
+        valorExistente.setColoracao(valor.getColoracao());
+        valorExistente.setSombrancelha(valor.getSombrancelha());
+
+        valorRepository.save(valorExistente);
+
+        return "redirect:/";
     }
     
     //PEGA PELO ID O CLIENTE NA AGENDA E DIRECIONA PARA REMARCAR

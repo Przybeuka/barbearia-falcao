@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Falcão</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+
+<body>
+    <section id="update" class="update-form">
+        <div class="container">
+            <div class="text-center">
+                <h2>Valor</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+					<form action="#" method="post" th:action="@{/valor}" th:object="${model}">
+
+                        <!-- DIA -->
+						<div class="form-group">
+						    <label for="barber">Dia</label>
+						    <select class="form-control" id="dia" th:field="*{dia}">
+						        <option value="">Selecione</option>
+						        <option value="Terça-feira">Terça-feira</option>
+						        <option value="Quarta-feira">Quarta-feira</option>
+						        <option value="Quinta-feira">Quinta-feira</option>
+						        <option value="Sexta-feira">Sexta-feira</option>
+						        <option value="Sabado">Sábado</option>
+						    </select>
+						</div>
+
+                        <!-- CORTE -->
+                        <div class="form-group">
+                            <label for="barber">Corte</label>
+                            <input type="text" id="corte" th:field="*{corte}" class="form-control">
+                        </div>
+
+						<!-- BARBA -->
+						<div class="form-group">
+						    <label for="barber">Barba</label>
+						    <input type="text" id="barba" th:field="*{barba}" class="form-control">
+						</div>
+
+						<!-- COLORAÇÃO -->
+						<div class="form-group">
+						    <label for="barber">Coloção</label>
+						    <input type="text" id="coloracao" th:field="*{coloracao}" class="form-control">
+						</div>
+						
+						<!-- SOMBRANCELHA -->
+						<div class="form-group">
+						    <label for="barber">Sombrancelha</label>
+						    <input type="text" id="sombrancelha" th:field="*{sombrancelha}" class="form-control">
+						</div>
+						<button type="submit" class="btn btn-primary btn-block">VALOR</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
